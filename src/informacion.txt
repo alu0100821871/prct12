@@ -1,0 +1,10 @@
+Información del software:
+('default', 'Aug  1 2012 05:16:07')
+<function platform at 0x97312cc>
+('Linux', 'ici', '3.2.0-60-generic', '#91-Ubuntu SMP Wed Feb 19 03:55:18 UTC 2014', 'i686', 'i686')
+2.7.3
+Información de la CPU:
+Intel(R) Atom(TM) CPU N2600   @ 1.60GHz
+GenuineIntel
+1600.000 Hz 
+512 KB

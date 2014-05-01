@@ -1,0 +1,36 @@
+#! /usr/bin/python
+#!encoding: UTF-8
+
+#Importamos el módulo mod_pi.
+import modulo
+
+#Definimos una función destinada a la detección de errores.
+
+def error (n_test, intervalo, umbral):
+  
+  fallos = 0
+  for i in range(n_test):
+    apr = modulo.aproximacion (intervalo)
+    diferencia = abs(modulo.aproximacion - apr)
+    if (diferencia > umbral):
+      fallos += 1
+  
+  porcentaje = (float(fallos)/float(n_test))*100
+  return porcentaje
+
+#Cuerpo de comprobaciones del módulo.
+
+if (__name__ == "__main__"):
+    #Importamos la librería sys para permitir el uso de sys.argv.
+    import sys
+    if ((len(sys.argv) == 1) or (len(sys.argv) == 2) or (len(sys.argv[3]) == 3)):
+        print "\nSe requiere la presencia de tres argumentos"
+        n_test = int(raw_input("Introduzca el número de intervalos utilizados para aproximar pi: "))
+        intervalo = int(raw_input("Introduzca el número de ejecuciones del algoritmo: "))
+        umbral = float(raw_input("Introduzca el umbral de tolerancia para comprobación de errores: "))
+    else:
+        n_test = int(sys.argv[1])
+        intervalo = int(sys.argv[2])
+        umbral = float(sys.argv[3])
+    porcentaje = error(n_test, intervalo, umbral)
+    print "\nEl porcentaje de errores detectados ha sido del %.4f %%.\n" %porcentaje

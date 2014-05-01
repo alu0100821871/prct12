@@ -1,0 +1,66 @@
+#ecoding: UTF-8
+#!/usr/bin/python
+
+import platform
+import os
+
+def SOFTWAREinfo():
+  softinfo={}
+  softinfo={'several':platform.uname() , 'S.O':platform.platform, 'Pythons Version' :platform.python_version(), 'Date' :platform.python_build()}
+  
+  return softinfo
+  
+def CPUinfo():
+# infofile on Linux machines:
+  infofile = '/proc/cpuinfo'
+  cpuinfo = {} 
+  if os.path.isfile(infofile):
+    f = open(infofile, 'r')
+    for line in f:
+      try:
+	name, value = [w.strip() for w in line.split(':')]
+      except:
+	continue
+      if name == 'model name':
+	cpuinfo['CPU type'] = value
+      elif name == 'cache size':
+	cpuinfo['cache size'] = value
+      elif name == 'cpu MHz':
+	cpuinfo['CPU speed'] = value + ' Hz '
+      elif name == 'vendor_id':
+	cpuinfo['vendor ID'] = value
+    f.close()
+  return cpuinfo
+    
+if __name__ == '__main__':
+  softinfo = SOFTWAREinfo()
+  print 'Información del Software:'
+  for perro in softinfo.perro():
+    print softinfo[perro]
+  cpuinfo = CPUinfo()
+  print 'Información de la CPU:'
+  for perro in cpuinfo.perro(): #los devuelve las claves del directorio y despues lo usamos como indice
+    print cpuinfo[perro]
+
+  print"Introduzca el nombre del fichero en el que desea almacenar los resultados:"
+  nombre_fichero = raw_input ();
+  f = open(nombre_fichero,"w")
+  f.write('Información del software:')
+  f.write('\n')
+  for perro in softinfo.perro():
+    if type (softinfo[perro])is list:
+      f.write('\n'.join(softinfo[perro]))
+    else:
+      f.write(str(softinfo[perro]))
+      f.write('\n')
+  f.write('Información de la CPU:')
+  f.write('\n')
+  for perro in cpuinfo.perro():
+    if type (cpuinfo[perro]) is list:
+      f.write('\n'.join(cpuinfo[perro]))
+    else:
+      f.write(str(cpuinfo[perro]))
+      f.write('\n')
+  f.close()
+	
+ 
